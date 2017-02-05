@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="queryBuilderApp">
+	<head>
+		<title>JSON Query Builder</title>
+		<base href="/" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="src/app.css" />
+	</head>
+	<body ng-controller="FormController">
+		<div class="container">
+	    <div class="header clearfix">
+	      <nav>
+	        <ul class="nav nav-pills pull-right">
+	          <li role="presentation" class="active"><a href="#">Home</a></li>
+	        </ul>
+	      </nav>
+	      <h3 class="text-muted">JSON Query Builder</h3>
+	    </div>
+			<div class="container">
+				<json-schema-form></json-schema-form>
+				<pre>{{ model | json}}</pre>
+			</div>
+
+			<footer class="footer">
+				<p></p>
+			</footer>
+			<script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
+			<script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="lib/angular/angular.min.js"></script>
+			<script type="text/javascript" src="lib/angular-route/angular-route.min.js"></script>
+			<script type="text/javascript" src="src/app.js"></script>
+			<script type="text/javascript" src="src/controllers/FormController.js"></script>
+			<script type="text/javascript" src="src/directives/Form.js"></script>
+			<script type="text/javascript" src="src/directives/JsonQuery.js"></script>
+			<script type="text/javascript" src="src/services/JsonService.js"></script>
+		</div>
+	</body>
+</html>
