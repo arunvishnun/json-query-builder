@@ -20,6 +20,8 @@ node server.js
 This would start server at port 3000. Navigate to http://localhost:3000/ to view the app.
 
 ## Tests
+This uses Jasmine with Karma test runner.
+
 ```bash
 npm test
 ```
