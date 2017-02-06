@@ -1,21 +1,23 @@
 # json-query-builder
 Simple Angular Form for generating JSON query from JSON Schema.
 
-# Dependencies
--angular
--bootstrap
--jquery
+## Dependencies
+- angular
+- bootstrap
+- jquery
 
-# Installation
+## Installation
 
+```bash
 npm install
-
 bower install
+```
 
-# Start Server
-
+## Start Server
+```bash
 node server.js
-
-# Tests
-
+```
+## Tests
+```bash
 npm test
+```
