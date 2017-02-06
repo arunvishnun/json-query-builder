@@ -9,6 +9,7 @@ describe('Form Controller', function(){
             $scope: scope
           });
         }));
+        
         it('model not be empty', function(){
             expect(scope.model).not.toBe(null);
         });

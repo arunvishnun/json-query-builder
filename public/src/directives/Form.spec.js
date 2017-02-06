@@ -1,6 +1,5 @@
-describe('Directive json-schema-form', function() {
+describe('Directive: json-schema-form', function() {
   var element, scope;
-  // TODO
 
   beforeEach(module('queryBuilderApp'));
 
@@ -11,14 +10,13 @@ describe('Directive json-schema-form', function() {
 
   }));
 
-  //TODO: add tests for json-schema-form
+  // TODO: add tests for json-schema-form
   // it('should include form to dom', function() {
   //
   // });
 });
 
-
-describe('Directive', function() {
+describe('Directive: epochvalidate', function() {
     var $scope;
     beforeEach(module('queryBuilderApp'));
     beforeEach(inject(function($rootScope, $compile) {
