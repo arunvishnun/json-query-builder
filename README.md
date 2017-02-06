@@ -2,9 +2,9 @@
 Simple Angular Form for generating JSON query from JSON Schema.
 
 # Dependencies
-angular
-bootstrap
-jquery
+-angular
+-bootstrap
+-jquery
 
 # Installation
 
