@@ -26,7 +26,7 @@ app.directive('jsonSchemaForm',  ['JsonService', function Form(JsonService) {
 
 /**
  * Validation for Unix epoch time.
- * Usage: add epochvalidate as attibute to dom element
+ * Usage: add epochvalidate as attibute to input element
  */
 app.directive('epochvalidate', function () {
   return {
