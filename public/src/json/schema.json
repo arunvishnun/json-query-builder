@@ -4,7 +4,7 @@
     "properties": {
         "start_time": {
             "type": "number",
-            "description": "End Time in UNIX Epoch format"
+            "description": "Start Time in UNIX Epoch format"
         },
         "end_time": {
             "type": "number",
