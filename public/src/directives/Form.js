@@ -5,14 +5,6 @@ app.directive('jsonSchemaForm',  ['JsonService', function Form(JsonService) {
     restrict: 'EA',
     templateUrl: 'src/directives/form.html',
     controllerAs: 'form',
-    // controller: function($scope) {
-    //   JsonService.then(function(data) {
-    //     // scope.dummyData = data.properties['start_time'].type;
-    //   });
-    // },
-    // scope: {
-    //     schema: '=',
-    // },
     link: function(scope, element, attr) {
 
       JsonService.then(function(json) {
@@ -25,14 +17,8 @@ app.directive('jsonSchemaForm',  ['JsonService', function Form(JsonService) {
       }
 
       scope.getInputType = function(item) {
-        
-        var isPrimitiveProperty = scope.isPrimitive(item);
-        var typeToCompare;
-        if(isPrimitiveProperty) {
-          return  (item.type === "string") ? "text" : "number";
-        } else {
-          return  (item.items.type === "string") ? "text":"number";
-        }
+        var typeToCompare = scope.isPrimitive(item) ? item.type : item.items.type;
+        return (typeToCompare === 'string') ? 'text' : 'number';
       }
 
     }

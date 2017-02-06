@@ -10,16 +10,17 @@
             "type": "number",
             "description": "End Time in UNIX Epoch format"
         },
+        "table_name": {
+            "type": "string",
+            "description": "Table Name used for the query"
+        },
         "select_fields": {
             "type": "array",
             "items": {
                 "type": "string"
             }
         },
-        "table": {
-            "type": "string",
-            "description": "Table Name used for the query"
-        },
+
         "where": {
             "type": "array",
             "items": {

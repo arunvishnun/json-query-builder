@@ -64,9 +64,10 @@ ul li {
   margin-bottom: 12px;
 }
 
-#non-primitive ul {
+#non-primitive div.form-group {
   border-bottom: 1px solid #eee;
   padding-bottom: 8px;
+  margin: 8px;
 }
 
 /* Supporting marketing content */

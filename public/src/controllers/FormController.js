@@ -30,4 +30,11 @@ queryBuilderApp.controller('FormController', function FormController($scope) {
 		 $scope.model['where'].push(where_clauses);
 	 }
 
+	//  $scope.submit = function() {
+	// 	 // check to make sure the form is completely valid
+	// 	 if ($scope.queryBuilder.$valid) {
+	//
+	// 	 }
+	//  };
+
 });

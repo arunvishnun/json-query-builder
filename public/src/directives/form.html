@@ -1,97 +1,102 @@
 <form name="queryBuilder" ng-submit="submit()">
   <div class="row" ng-repeat="(propertyName, property) in schema">
-    <!-- Primitive -->
-    <div class="form-group" ng-if="isPrimitive(property)">
-      <div class="col-lg-4"><label>{{propertyName}}</label></div>
-      <div class="col-lg-4">
-        <input type="{{getInputType(property)}}" name="{{propertyName}}" id="{{propertyName}}" class="form-control" placeholder="{{property.description}}" ng-model="model[propertyName]" />
+    <div class="col-lg-12">
+      <!-- Primitive -->
+      <div class="form-group" ng-if="isPrimitive(property)" ng-class="{ 'has-error' : queryBuilder.{{propertyName}}.$invalid && ! queryBuilder.{{propertyName}}.$pristine }">
+        <div class="col-lg-6">
+          <h4>{{propertyName | clean}}</h4>
+          <input type="{{getInputType(property)}}" name="{{propertyName}}" id="{{propertyName}}" class="form-control" placeholder="{{property.description}}" ng-model="model[propertyName]" />
+        </div>
       </div>
     </div>
 
-    <!-- array or object -->
-    <div ng-if="!isPrimitive(property)">
+    <div class="col-lg-12"  ng-if="!isPrimitive(property)">
       <div class="form-group" ng-if="isPrimitive(property.items)">
         <!-- select_fields -->
-          <h3>{{propertyName}}</h3>
-          <ul class="form-group">
-            <li ng-repeat="select_field in model['select_fields'] track by $index">
+        <div class="col-lg-12" ><h4>{{propertyName | clean}}</h4></div>
+        <div class="col-lg-12" >
+          <div class="form-group" ng-repeat="select_field in model['select_fields'] track by $index">
               <div class="row">
-                <!-- <div class="col-lg-2"><label>Name</label></div> -->
                 <div class="col-lg-6"><input ng-model="model['select_fields'][$index]" class="form-control" type="{{getInputType(property.items)}}"></div>
-                  <!-- <label> Selected </label> -->
-                <div class="col-lg-2"></div>
-                <div class="col-lg-1"><button ng-click="select_fields.splice($index, 1)" type="button" class="close" aria-label="Remove"><span aria-hidden="true">&times;</span></button></div>
+                <div class="col-lg-1"><button ng-click="model['select_fields'].splice($index, 1)" type="button" class="close" aria-label="Remove"><span aria-hidden="true">&times;</span></button></div>
               </div>
-
-            </li>
-            <li>
-              <button ng-click="model['select_fields'].push('')" class="btn btn-default">Add</button>
-            </li>
-          </ul>
+          </div>
+          <div class="form-group">
+            <div class="row">
+                <div class="col-lg-offset-6 col-lg-2" ><button ng-click="model['select_fields'].push('')" class="btn btn-warning">Add</button></div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- <div id="non-primitive" ng-if="!isPrimitive(property.items)">
+      <div id="non-primitive" class="col-lg-12" ng-if="!isPrimitive(property.items)">
+          <!-- Where clause fields -->
+          <h4>{{propertyName | clean}}</h4>
+          <div class="col-lg-12 table-header">
+            <div class="col-lg-2"><label>Name</label></div>
+            <div class="col-lg-1 col-lg-offset-1"><label>Operator</label></div>
+            <div class="col-lg-2 col-lg-offset-1"><label>Value</label></div>
+          </div>
 
-        <h3>Where Clauses</h3>
-        <table class="table">
-          <thead> <tr><th>Name</th> <th>Operator</th> <th>Value</th> <th></th></tr> </thead>
-          <tbody>
-            <tr ng-repeat="where_clause in where_clauses">
-              <td><input ng-model="where_clause.name" class="form-control"></td>
-              <td>
-                  <select class="form-control">
-                    <option value="">select</option>
-                    <option value="!=">!=</option>
-                    <option value="=">=</option>
+          <div class="form-group" ng-repeat="where_clauses in model['where'] track by $index">
+            <div ng-repeat="clause in where_clauses" class="row">
+              <div class="col-lg-12" >
+                <div class="col-lg-3"><input ng-model="clause.name" class="form-control" ></div>
+                <div class="col-lg-2">
+                  <select class="form-control" ng-model="clause.operator">
+                      <option value="">select</option>
+                      <option value="!=">!=</option>
+                      <option value="=">=</option>
                   </select>
-              </td>
-              <td><input ng-model="where_clause.name" class="form-control"></td>
-              <td><button ng-click="where_clauses.splice($index, 1)" type="button" class="close" aria-label="Remove"><span aria-hidden="true">&times;</span></button></td>
-            </tr>
-            <tr><button ng-click="where_clauses.push({})" class="btn btn-default">OR</button></tr>
-          </tbody>
-        </table>
-        <div class="row">
-          <div class="col-md-2 col-md-offset-4"><button ng-click="cloneItem()" class="btn btn-default">AND</button></div>
-        </div>
-      </div> -->
-
-      <div id="non-primitive" ng-if="!isPrimitive(property.items)">
-        <!-- Where clause fields -->
-        <h3>{{propertyName}}</h3>
-        <div class="row table-header">
-          <div class="col-lg-2 col-lg-offset-1"><label>Name</label></div>
-          <div class="col-lg-1 col-lg-offset-1"><label>Operator</label></div>
-          <div class="col-lg-2 col-lg-offset-1"><label>Value</label></div>
-        </div>
-
-        <ul class="form-group" ng-repeat="where_clauses in model['where'] track by $index">
-          <li ng-repeat="clause in where_clauses" class="row-fluid">
-            <div class="row">
-              <!-- <div class="col-lg-2"><label>Name</label></div> -->
-              <div class="col-lg-3"><input ng-model="clause.name" class="form-control" ></div>
-              <div class="col-lg-2">
-                <select class="form-control" ng-model="clause.operator">
-                    <option value="">select</option>
-                    <option value="!=">!=</option>
-                    <option value="=">=</option>
-                </select>
+                </div>
+                <div class="col-lg-3"><input type="text" ng-model="clause.value" class="form-control" /></div>
+                <div class="col-lg-1"><button ng-click="where_clauses.splice($index, 1)" type="button" class="close" aria-label="Remove"><span aria-hidden="true">&times;</span></button></div>
               </div>
-              <div class="col-lg-3"><input type="text" ng-model="clause.value" class="form-control" /></div>
-              <div class="col-lg-1"><button ng-click="where_clauses.splice($index, 1)" type="button" class="close" aria-label="Remove"><span aria-hidden="true">&times;</span></button></div>
             </div>
-          </li>
-          <li>
-            <button ng-click="where_clauses.push({})" class="btn btn-default">AND</button>
-          </li>
-        </ul>
-        <div class="row">
-          <div class="col-md-2 col-md-offset-4"><button ng-click="cloneItem()" class="btn btn-default">OR</button></div>
+            <div>
+              <button ng-click="where_clauses.push({})" class="btn btn-success">AND</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2 col-md-offset-4"><button ng-click="cloneItem()" class="btn btn-success">OR</button></div>
+          </div>
         </div>
+
+        <!-- Table implementations -->
+        <!-- <div id="non-primitive" class="col-lg-12" ng-if="!isPrimitive(property.items)">
+          <div class="col-lg-12" ><h3>{{propertyName}}</h3></div>
+          <table class="table" ng-repeat="where_clauses in model['where'] track by $index">
+            <thead> <tr><th>Name</th> <th>Operator</th> <th>Value</th> <th></th></tr> </thead>
+            <tbody>
+              <tr ng-repeat="clause in where_clauses">
+                <td><input ng-model="clause.name" class="form-control"></td>
+                <td>
+                    <select class="form-control" ng-model="clause.operator">
+                      <option value="">select</option>
+                      <option value="!=">!=</option>
+                      <option value="=">=</option>
+                    </select>
+                </td>
+                <td><input ng-model="clause.value" class="form-control"></td>
+                <td><button ng-click="where_clauses.splice($index, 1)" type="button" class="close" aria-label="Remove"><span aria-hidden="true">&times;</span></button></td>
+              </tr>
+              <tr>
+                <td colspan="3"><button ng-click="where_clauses.push({})" class="btn btn-default">OR</button></td></tr>
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="col-md-2 col-md-offset-4"><button ng-click="cloneItem()" class="btn btn-default">AND</button></div>
+          </div>
+        </div> -->
+
       </div>
     </div>
-  </div>
-  <div class="row-fluid">
-    <input type="submit" class="btn btn-primary btn-lg" json-query value="Submit" />
-  </div>
+    <div class="row">
+      <div class="col-lg-2 col-lg-offset-10">
+        <input type="submit" class="btn btn-primary btn-lg" json-query value="Submit" />
+      </div>
+    </div>
+
+
+
 </form>
