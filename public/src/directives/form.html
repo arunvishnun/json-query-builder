@@ -24,7 +24,7 @@
           </div>
           <div class="form-group">
             <div class="row">
-                <div class="col-lg-offset-6 col-lg-2" ><button ng-click="model['select_fields'].push('')" class="btn btn-warning">Add</button></div>
+                <div class="col-lg-offset-6 col-lg-2" ><button type="button" ng-click="model['select_fields'].push('')" class="btn btn-warning">Add</button></div>
             </div>
           </div>
         </div>
@@ -55,41 +55,13 @@
               </div>
             </div>
             <div>
-              <button ng-click="where_clauses.push({})" class="btn btn-success">AND</button>
+              <button type="button" ng-click="where_clauses.push({})" class="btn btn-success">AND</button>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-2 col-md-offset-4"><button ng-click="cloneItem()" class="btn btn-success">OR</button></div>
+            <div class="col-md-2 col-md-offset-4"><button type="button" ng-click="cloneItem()" class="btn btn-success">OR</button></div>
           </div>
         </div>
-
-        <!-- Table implementations -->
-        <!-- <div id="non-primitive" class="col-lg-12" ng-if="!isPrimitive(property.items)">
-          <div class="col-lg-12" ><h3>{{propertyName}}</h3></div>
-          <table class="table" ng-repeat="where_clauses in model['where'] track by $index">
-            <thead> <tr><th>Name</th> <th>Operator</th> <th>Value</th> <th></th></tr> </thead>
-            <tbody>
-              <tr ng-repeat="clause in where_clauses">
-                <td><input ng-model="clause.name" class="form-control"></td>
-                <td>
-                    <select class="form-control" ng-model="clause.operator">
-                      <option value="">select</option>
-                      <option value="!=">!=</option>
-                      <option value="=">=</option>
-                    </select>
-                </td>
-                <td><input ng-model="clause.value" class="form-control"></td>
-                <td><button ng-click="where_clauses.splice($index, 1)" type="button" class="close" aria-label="Remove"><span aria-hidden="true">&times;</span></button></td>
-              </tr>
-              <tr>
-                <td colspan="3"><button ng-click="where_clauses.push({})" class="btn btn-default">OR</button></td></tr>
-            </tbody>
-          </table>
-          <div class="row">
-            <div class="col-md-2 col-md-offset-4"><button ng-click="cloneItem()" class="btn btn-default">AND</button></div>
-          </div>
-        </div> -->
-
       </div>
     </div>
     <div class="row">
@@ -97,7 +69,4 @@
         <input type="submit" class="btn btn-primary btn-lg" json-query value="Submit" />
       </div>
     </div>
-
-
-
 </form>

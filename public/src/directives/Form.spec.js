@@ -44,15 +44,21 @@ describe('Directive: epochvalidate', function() {
       expect(form.$valid).toBeFalsy();
     });
 
-    it('should not be empty', function() {
+    it('can be empty as it is not a required field', function() {
       var form = scope.form;
       form.testinput.$setViewValue('');
-      expect(form.$valid).toBeFalsy();
+      expect(form.$valid).toBeTruthy();
     });
 
     it('should not be -ve', function() {
       var form = scope.form;
       form.testinput.$setViewValue('-1486725000');
       expect(form.$valid).toBeFalsy();
+    });
+
+    it('can be epoch number', function() {
+      var form = scope.form;
+      form.testinput.$setViewValue(1486725000);
+      expect(form.$valid).toBeTruthy();
     });
 });

@@ -36,7 +36,7 @@ app.directive('epochvalidate', function () {
       ctrl.$parsers.unshift(function (viewValue) {
         var UNIX_TIME_REGEXP = /^\d{10}$|^\d{13}$/;
         // If valid return true
-        if (UNIX_TIME_REGEXP.test(viewValue.toString())) {
+        if (UNIX_TIME_REGEXP.test(viewValue.toString()) || viewValue === '') {
           ctrl.$setValidity('epochvalidate', true);
           return viewValue;
         } else { // it is invalid, return undefined (no model update)

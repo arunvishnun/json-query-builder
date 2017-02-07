@@ -39,10 +39,10 @@
             </div>
         </div>
 				<json-schema-form></json-schema-form>
-				<div class="row">
+				<div class="row" ng-show="jsonQuery">
             <div class="col-lg-12">
 							<h3>Generated JSON Query</h3>
-							<pre>{{ model | json}}</pre>
+							<pre>{{ jsonQuery | json}}</pre>
 						</div>
 				</div>
 				<hr>
