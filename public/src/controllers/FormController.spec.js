@@ -10,7 +10,7 @@ describe('Form Controller', function(){
           });
         }));
 
-        it('should have the FormController controlle definedr', function() {
+        it('should have the FormController controller defined', function() {
           expect('FormController').toBeDefined();
         });
 
