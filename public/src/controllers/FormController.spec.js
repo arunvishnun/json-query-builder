@@ -9,7 +9,11 @@ describe('Form Controller', function(){
             $scope: scope
           });
         }));
-        
+
+        it('should have the FormController controlle definedr', function() {
+          expect('FormController').toBeDefined();
+        });
+
         it('model not be empty', function(){
             expect(scope.model).not.toBe(null);
         });
